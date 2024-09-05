@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+
+                let incorrect = document.querySelectorAll('.incorrect');
+                for (let x = 0; x < incorrect.length; x++) {
+                    incorrect[x].addEventListener('click', function() {
+                        incorrect[x].style.backgroundColor = 'Red';
+                        document.querySelector('.feedback1').innerHTML = 'Incorrect!';
+                    });
+                }
+
+                let correct = document.querySelector('.correct');
+                correct.addEventListener('click', function() {
+
+                    correct.style.backgroundColor = 'Green';
+                    document.querySelector('.feedback1').innerHTML = 'Correct!';
+                });
+
+                let answer = document.querySelector("#check");
+                answer.addEventListener('click', function() {
+                    let input = document.querySelector("input");
+                    if (input.value === "And Rohan will answer. Master the Rohirrim!") {
+                        input.style.backgroundColor = "Green";
+                        document.querySelector('.feedback2').innerHTML = "Correct!";
+                    } else {
+                        input.style.backgroundColor = "Red";
+                        document.querySelector('.feedback2').innerHTML = "Incorrect!";
+                    }
+                });
+
+
+
+            
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>Who delivered the Unique Ring into Mount Doom</h3>
+                <form action=" " method="get">
+                    <button class="incorrect">Gandalf </button>
+                    <button class="incorrect">Sauron </button>
+                    <button class="correct">Frodo & Sam</button>
+                    <button class="incorrect">Gollum </button>
+                </form>
+                <p class='feedback1'></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>Gondor calls for aid...</h3>
+                <form action=" " method="get">
+                    <input placeholder="Complete the scene" name="q" type="text">
+                    <button id="check">Confirm</button>
+                    <p class='feedback2'></p>
+                </form>
+            </div>
+        </div>
+    </body>
+
+</html>

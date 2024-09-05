@@ -1,0 +1,4 @@
+Calcularía el avg de las características propuestas y en base al resultado le asignaria un valor de aura
+
+Es posible que esto no demuestre exactamente el aura del oyente pues al final no considero que sea algo que se pueda calcular solo en base a numeros, el significado de las canciones,
+el artista que las hace y más detalles deberian tenerse en cuenta a la hora de calcularlo.
