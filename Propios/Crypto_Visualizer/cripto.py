@@ -1,5 +1,8 @@
 from datetime import datetime
 from tkinter import ttk, messagebox
+from cripto_dic import criptos
+from cripto_dic_grf import criptos_grf
+import matplotlib.pyplot as plt
 import tkinter as tk
 import requests
 import sqlite3
@@ -9,69 +12,6 @@ import sys
 import sv_ttk
 import threading
 import queue
-
-
-# Criptomonedas que vamos a comparar
-criptos = {
-    "bitcoin": "BTCUSDT",
-    "ethereum": "ETHUSDT",
-    "binance coin": "BNBUSDT",
-    "cardano": "ADAUSDT",
-    "solana": "SOLUSDT",
-    "ripple": "XRPUSDT",
-    "polkadot": "DOTUSDT",
-    "dogecoin": "DOGEUSDT",
-    "litecoin": "LTCUSDT",
-    "chainlink": "LINKUSDT",
-    "shiba inu": "SHIBUSDT",
-    "uniswap": "UNIUSDT",
-    "stellar": "XLMUSDT",
-    "usd coin": "USDCUSDT",
-    "tether": "USDTUSDT",
-    "monero": "XMRUSDT",
-    "tron": "TRXUSDT",
-    "vechain": "VETUSDT",
-    "ethereum classic": "ETCUSDT",
-    "algorand": "ALGOUSDT",
-    "cosmos": "ATOMUSDT",
-    "elrond": "EGLDUSDT",
-    "aave": "AAVEUSDT",
-    "zcash": "ZECUSDT",
-    "celo": "CELOUSDT",
-    "iota": "MIOTAUSDT",
-    "maker": "MKRUSDT",
-    "sushi": "SUSHIUSDT",
-    "fantom": "FTMUSDT",
-    "kava": "KAVAUSDT",
-    "basic attention token": "BATUSDT",
-    "harmony": "ONEUSDT",
-    "the graph": "GRTUSDT",
-    "nexo": "NEXOUSDT",
-    "hbar": "HBARUSDT",
-    "pancake swap": "CAKEUSDT",
-    "zilliqa": "ZILUSDT",
-    "curve dao token": "CRVUSDT",
-    "compound": "COMPUSDT",
-    "helium": "HNTUSDT",
-    "yearn finance": "YFIUSDT",
-    "safemoon": "SAFEMOONUSDT",
-    "quack": "QUACKUSDT",
-    "troy": "TROYUSDT",
-    "serum": "SRMUSDT",
-    "sand": "SANDUSDT",
-    "chiliz": "CHZUSDT",
-    "decentraland": "MANAUSDT",
-    "arweave": "ARUSDT",
-    "audius": "AUDIOUSDT",
-    "alpha finance lab": "ALPHAUSDT",
-    "anchor protocol": "ANCUSDT",
-    "ren": "RENUSDT",
-    "rari governance token": "RGTUSDT",
-    "ocean protocol": "OCEANUSDT",
-    "balancer": "BALUSDT",
-    "hive": "HIVEUSDT",
-    "lisk": "LSKUSDT"
-}
 
 ###
 # Funciones principales
@@ -144,6 +84,47 @@ def obtener_precio_historico(symbol, timestamp, resultado):
     except (requests.RequestException, ValueError, KeyError):
         print(f"Error al obtener el precio histórico de {symbol}")
         resultado.put(None)
+
+def obtener_precio_historico_grafica(crypto_id, dias=1):
+    url = f'https://api.coingecko.com/api/v3/coins/{crypto_id}/market_chart'
+    params = {
+        'vs_currency': 'usd',
+        'days': dias,
+    }
+    response = requests.get(url, params=params)
+
+    response = requests.get(url, params=params)
+    if response.status_code != 200:
+        raise Exception(f"Error al acceder a la API: {response.status_code} - {response.text}")
+
+    data = response.json()
+
+    print(data)
+
+    if 'prices' in data:
+        return data['prices']
+    else:
+        raise ValueError("La respuesta de la API no contiene la clave 'prices'")
+
+###
+
+###
+# Graficar precios históricos
+###
+
+def graficar_precio(precios):
+    tiempos = [datetime.fromtimestamp(p[0] / 1000) for p in precios]
+    valores = [p[1] for p in precios]
+
+    plt.figure(figsize=(10, 5))
+    plt.plot(tiempos, valores, label='Precio')
+    plt.xlabel('Tiempo')
+    plt.ylabel('Precio (USD)')
+    plt.title('Precio Histórico de Criptomoneda')
+    plt.legend()
+    plt.show()
+
+###
 
 ###
 # Funciones para añadir y eliminar criptomonedas
@@ -537,18 +518,17 @@ def mostrar_comparacion(tree):
                     symbol, 6) * bitcoin_precio_6_hrs
                 precio_anterior_3_hrs = obtener_precio_hace_X_horas(
                     symbol, 3) * bitcoin_precio_3_hrs
-                valor_activo = precio_actual * cantidad_cripto
             else:
                 # Obtener el precio directamente del símbolo
                 precio_actual = obtener_precio_y_binance(symbol)
                 precio_anterior_6_hrs = obtener_precio_hace_X_horas(symbol, 6)
                 precio_anterior_3_hrs = obtener_precio_hace_X_horas(symbol, 3)
-                valor_activo = precio_actual * cantidad_cripto
 
         # Calcular la diferencia de precios
-        if precio_actual is not None:
+        if precio_actual is not None and precio_anterior_6_hrs is not None and precio_anterior_3_hrs is not None:
             diferencia = (precio_actual*cantidad_cripto) - \
                 (precio_compra*cantidad_cripto)
+            valor_activo = precio_actual * cantidad_cripto
             comparaciones.append([
                 nombre_mostrado,
                 f"{precio_compra:.6f}",
@@ -584,6 +564,45 @@ def mostrar_comparacion(tree):
 
         # Configura la etiqueta para aplicar el color
         tree.tag_configure(tag_name, foreground=color)
+
+def obtener_id_de_grf(symbol):
+    # Limpiar el símbolo
+    if symbol == "BTCUSDT":
+        simbolo_limpio = "BTC"  # Mantener BTC tal cual
+    elif symbol == "USDTUSDT":
+        simbolo_limpio = "USDT"  # Mantener USDT tal cual
+    else:
+        simbolo_limpio = symbol.replace("USDT", "").replace("BTC", "")  # Limpiar para las demás criptos
+
+    # Buscar el ID en criptos_grf
+    for cripto in criptos_grf:
+        if cripto["symbol"] == simbolo_limpio.lower():
+            return cripto["id"]
+
+    return None  # Devuelve None si no se encuentra el ID
+
+# Función para mostrar gráfico al hacer clic en la fila
+def on_tree_select(event, tree):
+    selected_item = tree.selection()
+    if selected_item:
+        item = tree.item(selected_item)
+        crypto_name = item['values'][0].lower()  # Suponiendo que el nombre de la cripto está en la primera columna
+        crypto_symbol = criptos.get(crypto_name)  # Obtener el símbolo de la cripto
+
+        if crypto_symbol:
+            crypto_id = obtener_id_de_grf(crypto_symbol)  # Obtener el ID correspondiente
+
+            if crypto_id:
+                try:
+                    precios = obtener_precio_historico_grafica(crypto_id, dias=1)  # Obtener precios de las últimas 24 horas
+                    graficar_precio(precios)
+                except Exception as e:
+                    messagebox.showerror("Error", str(e))
+            else:
+                messagebox.showerror("Error", f"No se pudo encontrar el ID para el símbolo {crypto_symbol}")
+        else:
+            messagebox.showerror("Error", f"No se pudo encontrar el símbolo para {crypto_name.capitalize()}")
+
 
 
 # Función para ejecutar en un hilo y obtener los precios
@@ -647,7 +666,6 @@ def iniciar_interfaz():
 
     # Frame interior del Canvas que contendrá el contenido desplazable
     content_frame = ttk.Frame(canvas)
-    # content_frame.pack(expand=True, fill='both')
     canvas.create_window((0, 0), window=content_frame, anchor="nw")
 
     # Configurar eventos para ajustar el scroll
@@ -677,6 +695,9 @@ def iniciar_interfaz():
 
     button_frame = ttk.Frame(content_frame)
     button_frame.pack(pady=10)
+
+    # Agregar el evento para seleccionar una fila
+    tree.bind("<ButtonRelease-1>", lambda event: on_tree_select(event, tree))
 
     # Distribuir botones en la interfaz usando grid
     btn_lista = tk.Button(button_frame, text="Lista de Criptos",
