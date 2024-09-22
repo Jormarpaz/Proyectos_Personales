@@ -2,6 +2,7 @@ from datetime import datetime
 from tkinter import ttk, messagebox
 from cripto_dic import criptos
 from cripto_dic_grf import criptos_grf
+from matplotlib.animation import FuncAnimation
 import matplotlib.pyplot as plt
 import tkinter as tk
 import requests
@@ -112,18 +113,40 @@ def obtener_precio_historico_grafica(crypto_id, dias=1):
 # Graficar precios históricos
 ###
 
-def graficar_precio(precios):
+def graficar_precio(crypto_id, crypto_sym):
+    precios = obtener_precio_historico_grafica(crypto_id, dias=1)
     tiempos = [datetime.fromtimestamp(p[0] / 1000) for p in precios]
     valores = [p[1] for p in precios]
-
+    
     plt.figure(figsize=(10, 5))
-    plt.plot(tiempos, valores, label='Precio')
-    plt.xlabel('Tiempo')
-    plt.ylabel('Precio (USD)')
-    plt.title('Precio Histórico de Criptomoneda')
-    plt.legend()
-    plt.show()
+    
+    # Cambiar el fondo
+    plt.gca().set_facecolor('black')  # Fondo del área del gráfico
+    plt.gcf().patch.set_facecolor('black')  # Fondo de la figura
+    
+    # Graficar líneas cambiando el color
+    for i in range(len(valores) - 1):
+        color = 'green' if valores[i] < valores[i + 1] else 'red'
+        plt.plot(tiempos[i:i + 2], valores[i:i + 2], color=color)
 
+    plt.xlabel('Mes/Día/Hora', color='white')
+    plt.ylabel('Precio (USD)', color='white')
+    plt.title(f'Precio Histórico de {crypto_sym.upper()}', color='white')
+    plt.grid(True, color='gray')
+    # Añadir leyenda
+    plt.plot([], [], color='green', label='Subiendo')  # Placeholder para la leyenda
+    plt.plot([], [], color='red', label='Bajando')     # Placeholder para la leyenda
+    legend = plt.legend(loc='upper right', fontsize='small', facecolor='black', edgecolor='white', framealpha=0.7)
+
+    # Cambiar el color del texto de la leyenda a blanco
+    for text in legend.get_texts():
+        text.set_color('white')
+    
+    # Cambiar el color de los ticks
+    plt.tick_params(axis='x', colors='white')
+    plt.tick_params(axis='y', colors='white')
+    plt.show()
+    
 ###
 
 ###
@@ -581,25 +604,41 @@ def obtener_id_de_grf(symbol):
 
     return None  # Devuelve None si no se encuentra el ID
 
+def obtener_sym_de_grf(symbol):
+    # Limpiar el símbolo
+    if symbol == "BTCUSDT":
+        simbolo_limpio = "BTC"  # Mantener BTC tal cual
+    elif symbol == "USDTUSDT":
+        simbolo_limpio = "USDT"  # Mantener USDT tal cual
+    else:
+        simbolo_limpio = symbol.replace("USDT", "").replace("BTC", "")  # Limpiar para las demás criptos
+
+    # Buscar el ID en criptos_grf
+    for cripto in criptos_grf:
+        if cripto["symbol"] == simbolo_limpio.lower():
+            return cripto["symbol"]
+
+    return None  # Devuelve None si no se encuentra el ID
+
 # Función para mostrar gráfico al hacer clic en la fila
 def on_tree_select(event, tree):
     selected_item = tree.selection()
     if selected_item:
         item = tree.item(selected_item)
         crypto_name = item['values'][0].lower()  # Suponiendo que el nombre de la cripto está en la primera columna
-        crypto_symbol = criptos.get(crypto_name)  # Obtener el símbolo de la cripto
+        crypto_key = criptos.get(crypto_name)  # Obtener el símbolo de la cripto
 
-        if crypto_symbol:
-            crypto_id = obtener_id_de_grf(crypto_symbol)  # Obtener el ID correspondiente
+        if crypto_key:
+            crypto_id = obtener_id_de_grf(crypto_key)  # Obtener el ID correspondiente
+            crypto_sym = obtener_sym_de_grf(crypto_key)  # Obtener el símbolo correspondiente
 
             if crypto_id:
                 try:
-                    precios = obtener_precio_historico_grafica(crypto_id, dias=1)  # Obtener precios de las últimas 24 horas
-                    graficar_precio(precios)
+                    graficar_precio(crypto_id, crypto_sym)  # Graficar los precios
                 except Exception as e:
                     messagebox.showerror("Error", str(e))
             else:
-                messagebox.showerror("Error", f"No se pudo encontrar el ID para el símbolo {crypto_symbol}")
+                messagebox.showerror("Error", f"No se pudo encontrar el ID para el símbolo {crypto_key}")
         else:
             messagebox.showerror("Error", f"No se pudo encontrar el símbolo para {crypto_name.capitalize()}")
 
