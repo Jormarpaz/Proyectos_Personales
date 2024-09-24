@@ -6,37 +6,6 @@ body {
     color: #fff;
 }
 
-img {
-    display: block;
-    margin: 0 auto;
-}
-
-form {
-    margin: 0 auto;
-    width: 50%;
-    text-align: center;
-}
-
-.input-group .form-control {
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: #fff;
-    border-radius: 50px;
-    box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
-}
-
-.input-group-text {
-    background-color: #fff;
-    border-radius: 50px;
-    padding: 10px 15px;
-}
-
-.input-group .form-control:focus {
-    box-shadow: none;
-    outline: none;
-    border: 1px solid #ccc;
-}
-
 /* Estilo de los botones de enlaces */
 #links {
     text-align: center;
@@ -58,3 +27,80 @@ form {
         color: #000;
     }
 }
+
+img {
+    display: block;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+form {
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
+}
+
+/* Centramos el formulario */
+form {
+    margin: 0 auto;
+    width: 50%;
+    max-width: 600px; /* Limita el ancho máximo del formulario */
+    text-align: center;
+}
+
+/* Aseguramos que el input-group no se estire incorrectamente */
+.input-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Espacio entre los elementos */
+    width: 100%; /* Ocupa todo el ancho del formulario */
+}
+
+/* Para que los íconos y el input estén alineados */
+.input-group-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+/* Controlamos el tamaño del input para que no se estire */
+input.form-control {
+    flex-grow: 1;
+    max-width: 100%; /* Limita el tamaño del input */
+    min-width: 0; /* Evita que el input se haga más pequeño de lo necesario */
+    padding-left: 10px; /* Añade un poco de espacio a la izquierda del input */
+}
+
+/* Estilo para los íconos, agregamos un margen derecho al primer ícono */
+.input-group-text svg {
+    margin-right: 5px;
+}
+
+
+#submit{
+    margin-top: 20px;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+
+    .btn-primary {
+        margin-right: 15px;
+        padding: 5px 15px;
+    }
+
+    .btn-secondary {
+        margin-right: 15px;
+        padding: 5px 15px;
+    }
+}
+
+#idiomas{
+
+    padding-top: 20px;
+    font-size: 13px;
+    text-align: center;
+
+}
+
