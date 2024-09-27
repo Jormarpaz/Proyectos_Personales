@@ -1,19 +1,18 @@
-html, body{
+html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    align-content: center;
-    text-align: center;
-    background-color: #202124 !important; 
-    font-family: Arial, sans-serif;  
-    color:white;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    flex-direction: column;
+    background-color: #202124 !important;
+    font-family: Arial, sans-serif;
+    color: white;
 }
 
-/* Estilo de los botones de enlaces */
 #links {
-    
     margin: 30px;
-
     a {
         border: 1px solid blue;
         border-radius: 30px;
@@ -34,101 +33,66 @@ html, body{
 img {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 30px;
+    margin-top: 300px;
     margin-bottom: 30px;
 }
 
 /* Centramos el formulario */
 form {
-    margin: 0 auto;
     width: 100%;
     max-width: 600px;
+    text-align: center;
 }
 
-#conjunto{
-    border:1px solid darkgrey;
-    border-radius: 40px;
-    display: inline-flex; /* Asegura que los elementos internos se alineen correctamente */
-    align-items: center; /* Alinea verticalmente los elementos */
-    width: 100%; /* Asegura que el conjunto ocupe todo el ancho disponible */ 
+#conjunto {
+    border: thin solid light-dark(rgb(118,118,118), rgb(133,133,133));
+    border-radius: 45px;
+    padding: 5px 10px;
+    width: 100%; /* El contenedor del input ocupa todo el espacio disponible */
 }
 
-#conjunto:hover{
-    background-color: darkgrey;
-    color: white;
+#conjunto:hover {
+    background-color: #444746;
+    color: #bfbfbf;
+    border: 1px solid #28292a;
+
 }
 
 #conjunto:hover .form-control{
-    background-color: darkgrey;
+    background-color: #444746;
     color: white;
 }
 
 #conjunto:focus-within{
-    background-color: darkgrey;
+    background-color: #444746;
     color: white;
+    border: 1px ridge #28292a;
+
 }
 
-/* Aseguramos que el input-group no se estire incorrectamente */
 .input-group {
-    display: flex;
-    width: 100%; /* Ocupa todo el ancho del formulario */
+    width: 100%;
 
-    /* Aseguramos que el input ocupe el máximo espacio disponible */
     .form-control {
-        flex-grow: 1; /* Hacemos que el input crezca para ocupar todo el espacio disponible */
-        border-radius: 0;
-        border:none;
+        flex-grow: 1;
+        border: none;
         background-color: #202124;
     }
 
     .form-control:focus {
-        outline: none; /* Esto quita el contorno azul */
-        box-shadow: none; /* Esto quita cualquier sombra que pueda aparecer */
-        background-color: darkgrey; /* Opcional: mantener el fondo gris al hacer foco */
-    }
-
-    /* Aseguramos que los íconos no se expandan */
-    .input-group-text {
-        flex-grow: 0; /* Los íconos no se expanden */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0 10px;
+        outline: none;
+        box-shadow: none;
+        background-color: #444746;
     }
 
     #basic-addon1 {
-        
         background-color: transparent;
-        border:none;
-        animation: rainbow 20s infinite;
-        
+        border: none;
+        color: #bfbfbf;
     }
-
-    #basic-addon1-2 {
-        padding-right: -20px;
-        margin-right: -20px;
-        background-color: transparent;
-        border:none;
-        animation: rainbow 20s infinite;
-    }
-
-    #basic-addon1-3 {
-        background-color: transparent;
-        border-left: 0; /* Quita el borde izquierdo */
-        animation: rainbow 20s infinite;
-        border:none;
-    }
-
-    
 }
 
-/* Estilo para los íconos, agregamos un margen derecho al primer ícono */
-.input-group-text svg {
-    margin-right: 5px;
-}
-
-
-#submit{
+#submit {
     margin-top: 20px;
     border-radius: 10px;
     font-size: 16px;
@@ -145,24 +109,15 @@ form {
     }
 }
 
-#footer{
+#footer {
     padding-top: 20px;
     font-size: 13px;
     color: white;
-}
+    margin-bottom: 350px;
 
-/* Standar Syntax */
-@keyframes rainbow{
-    0%{color: orange;}	
-  10%{color: purple;}	
-	20%{color: red;}
-  30%{color: CadetBlue;}
-	40%{color: yellow;}
-  50%{color: coral;}
-	60%{color: green;}
-  70%{color: cyan;}
-  80%{color: DeepPink;}
-  90%{color: DodgerBlue;}
-	100%{color: orange;}
+    a{
+        text-decoration: none;
+        color:#a8c7fa;
+        margin:10px;
+    }
 }
-
