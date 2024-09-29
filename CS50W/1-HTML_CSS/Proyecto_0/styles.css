@@ -40,11 +40,6 @@ html .centro, body .centro {
   color: #000;
 }
 
-.container {
-  margin-top: 150px;
-  margin-bottom: 250px;
-}
-
 #title {
   width: 100%;
   padding: 20px;
@@ -82,6 +77,7 @@ form {
   width: 100%;
   max-width: 600px;
   text-align: center;
+  color: white !important;
 }
 
 #conjunto {
@@ -89,10 +85,11 @@ form {
   border-radius: 45px;
   padding: 5px 10px;
   width: 100%; /* El contenedor del input ocupa todo el espacio disponible */
+  color: white !important;
 }
 #conjunto:hover {
   background-color: #444746;
-  color: #bfbfbf;
+  color: white;
   border: 1px solid #28292a;
 }
 #conjunto:hover .form-control {
@@ -107,6 +104,7 @@ form {
 
 .input-group {
   width: 100%;
+  color: white !important;
 }
 .input-group .form-control {
   flex-grow: 1;

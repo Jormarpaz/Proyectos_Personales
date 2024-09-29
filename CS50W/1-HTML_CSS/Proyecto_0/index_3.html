@@ -10,82 +10,115 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f1f1f1;
-            color: #333;
+            color: white;
             padding: 20px;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         h1 {
             text-align: center;
             margin-bottom: 20px;
         }
-        label {
-            font-weight: bold;
-            margin-top: 10px;
-            display: block;
+        h4{
+            width: 100%;
+            margin-top: 35px;
+            margin-bottom: 5px;
+            font-size: 18px;
+
+            font-weight:lighter;
+            text-align: left;
+            justify-content: flex-start;
         }
         input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            height: 35px;
+            margin: 10px auto;
+            padding: 1px 8px;
+            font-size: 13px;
+            width: 75%;
+            background-color: transparent;
+            border: thin solid #5f6368;
+            color: #bdc1c6;
         }
-        button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #4285F4;
+        label {
+            color: #969BA1;
+            width: 250px; /* Ancho fijo para alinear correctamente */
+            text-align: left;
+            justify-content: flex-start;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            margin-left: -11px;
+        }
+        .big-container {
+            display:flex;
+            flex-direction: column;
+        }
+
+        .big-container input:focus{
+            outline: none;
+            border: thin solid #4285f4;
+        }
+
+        input[type="submit"] {
+            background-color: #8AB4F8; 
+            color:#202124; 
+            height: 30px; 
+            min-width: 120px; 
+            width: 0;
+            line-height: 100%; 
+            margin: 10px auto; 
+            padding: 0 12px;
+            border: none; 
+            font-size: 11px;
+            border-radius: 2px;
+            text-align: center;
+            box-sizing: border-box;
+            align-self: flex-end;
+            margin-top: -5px;
+            margin-right: 50px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #4285f4;
             color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
         }
-        button:hover {
-            background-color: #357ae8;
-        }
+        
     </style>
 </head>
-<body>
+<body style="display:flex; flex-direction: column;">
     <div id="links">
         <a id="image" href="index.html">Google Search</a> 
         <a id="advanced" href="index_2.html">Google Images Search</a>
     </div>
+
     <div id="title">
         <h1>Advanced Search</h1>
     </div>
+
     <div class="separador"></div>
-    <div id="inputs-container">
-        <div class="container">
-            <form action="https://www.google.com/search" method="get">
-                <!-- All these words -->
-                <label for="all-words">Find pages with… “all these words:”</label>
-                <input type="text" id="all-words" name="as_q">
-    
-                <!-- This exact word or phrase -->
-                <label for="exact-phrase">Find pages with… “this exact word or phrase:”</label>
-                <input type="text" id="exact-phrase" name="as_epq">
-    
-                <!-- Any of these words -->
-                <label for="any-words">Find pages with… “any of these words:”</label>
-                <input type="text" id="any-words" name="as_oq">
-    
-                <!-- None of these words -->
-                <label for="none-words">Find pages with… “none of these words:”</label>
-                <input type="text" id="none-words" name="as_eq">
-    
-                <!-- Submit button -->
-                <button type="submit">Advanced Search</button>
-            </form>
-        </div>
+
+    <div>
+        <span class="big-container">
+            <h4>Find pages with...</h4>
+            <span class="container">
+                    <label for="these_words">all these words: </label>
+                    <input type="text" name="as_q" id="these_words">
+            </span>
+            <span class="container">
+                <label for="this words">this exact word or phrase: </label>
+                <input type="text" name="as_epq" id="this words">
+            </span>
+            <span class="container">
+                <label for="any words">any of these words: </label>
+                <input type="text" name="as_oq" id="any words">
+            </span>
+            <span class="container">
+                <label for="none words">none of these words: </label>
+                <input type="text" name="as_eq" id="none words">
+            </span>
+            <div id="submit"></div>
+                <input type="submit" value="Advanced Search">
+            </div>
+        </span>
     </div>
 </body>
 </html>
