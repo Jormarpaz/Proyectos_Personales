@@ -1,33 +1,72 @@
 html, body {
     height: 100%;
+    width: 100%;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    flex-direction: column;
     background-color: #202124 !important;
     font-family: Arial, sans-serif;
     color: white;
+    position: relative;
+
+    .centro{
+        display: flex;
+        justify-content: center; /* Centra horizontalmente */
+        align-items: center; /* Centra verticalmente */
+        flex-direction: column;
+    }
 }
 
 #links {
-    margin: 30px;
+    width: 100%;
+    padding: 10px 20px;
+    
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+
     a {
-        border: 1px solid blue;
-        border-radius: 30px;
-        padding: 15px;
-        margin: 10px;
+        margin: 11px 4px 15px 20px;
+        padding: 8px 16px;
+
+        background-color: #303134;
+        border:none;
+        border-radius: 10px;
+        
+        font-size: 16px;
         text-decoration: none;
         color: white;
-        background-color: transparent;
         transition: background-color 0.3s ease, color 0.3s ease;
-    }
 
-    a:hover {
-        background-color: darkgrey;
-        color: #000;
+        &:hover {
+            background-color: darkgrey;
+            color: #000;
+        }
     }
+}
+
+#title {
+    width: 100%;
+
+    padding: 20px;
+    margin-top: 60px;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    text-align: center;
+
+    & h1{
+        font-size: 40px;
+        font-weight: bold;
+        color: #F28B82;
+    }
+}
+
+hr{
+    width: 100%;
+    margin-top: 10px;
+    border: 15px solid white;
 }
 
 img {
@@ -49,25 +88,24 @@ form {
     border-radius: 45px;
     padding: 5px 10px;
     width: 100%; /* El contenedor del input ocupa todo el espacio disponible */
-}
 
-#conjunto:hover {
-    background-color: #444746;
+    &:hover{
+        background-color: #444746;
     color: #bfbfbf;
     border: 1px solid #28292a;
+    }
 
-}
+    &:hover .form-control{
+        background-color: #444746;
+        color: white;
+    }
 
-#conjunto:hover .form-control{
-    background-color: #444746;
-    color: white;
-}
+    &:focus-within{
+        background-color: #444746;
+        color: white;
+        border: 1px ridge #28292a;
 
-#conjunto:focus-within{
-    background-color: #444746;
-    color: white;
-    border: 1px ridge #28292a;
-
+    }
 }
 
 .input-group {
