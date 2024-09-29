@@ -46,27 +46,38 @@ html, body {
     }
 }
 
+.container{
+    margin-top:150px; 
+    margin-bottom: 250px;
+}
+
 #title {
     width: 100%;
-
     padding: 20px;
     margin-top: 60px;
+
     position: relative;
     display: flex;
     justify-content: flex-start;
     text-align: center;
 
     & h1{
-        font-size: 40px;
-        font-weight: bold;
+        font-size: 24px;
+        font-weight: lighter; 
         color: #F28B82;
     }
 }
 
-hr{
+.separador{
     width: 100%;
-    margin-top: 10px;
-    border: 15px solid white;
+    height: 2px;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 160px;
+   
+    border: thin solid black;
 }
 
 img {
