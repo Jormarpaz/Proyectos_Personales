@@ -96,29 +96,29 @@
 
     <div class="separador"></div>
 
-    <div>
+    <form action="https://www.google.com/search" method="GET" name="f">
         <span class="big-container">
             <h4>Find pages with...</h4>
             <span class="container">
                     <label for="these_words">all these words: </label>
-                    <input type="text" name="as_q" id="these_words">
+                    <input autocomplete="off" type="text" name="as_q" id="these_words">
             </span>
             <span class="container">
                 <label for="this words">this exact word or phrase: </label>
-                <input type="text" name="as_epq" id="this words">
+                <input autocomplete="off" type="text" name="as_epq" id="this words">
             </span>
             <span class="container">
                 <label for="any words">any of these words: </label>
-                <input type="text" name="as_oq" id="any words">
+                <input autocomplete="off" type="text" name="as_oq" id="any words">
             </span>
             <span class="container">
                 <label for="none words">none of these words: </label>
-                <input type="text" name="as_eq" id="none words">
+                <input autocomplete="off" type="text" name="as_eq" id="none words">
             </span>
             <div id="submit"></div>
                 <input type="submit" value="Advanced Search">
             </div>
         </span>
-    </div>
+    </form>
 </body>
 </html>
