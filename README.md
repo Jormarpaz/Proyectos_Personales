@@ -10,7 +10,7 @@ Se pueden encontrar en estas carpetas, proyectos implementando:
   - `SQL`
   - ...
 ***
-De momento paso a mi tercer año de carrera, aunque la mayoria de asignaturas son de 2 porque no pude cursarlas antes, así que cuento con incluir más proyectos pronto. También he realizado los cursos de 
+De momento paso a mi tercer año de carrera, así que cuento con incluir más proyectos pronto. También he realizado los cursos de 
 *[CS50X <Img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/Shield_of_Harvard_College.svg/640px-Shield_of_Harvard_College.svg.png" width="15" height="15"/>](https://learning.edx.org/course/course-v1:HarvardX+CS50+X)* 
 *[CS50P <Img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/Shield_of_Harvard_College.svg/640px-Shield_of_Harvard_College.svg.png" width="15" height="15"/>](https://learning.edx.org/course/course-v1:HarvardX+CS50P+Python)* 
 centrados sobretodo en aprender 'lógica de programación' junto a la mayoría de tecnologías de arriba, la verdad que han sido experiencias de aprendizaje muy bienvenidas, os animo a que las intenteis, no cuestan dinero y son a vuestro ritmo :).
