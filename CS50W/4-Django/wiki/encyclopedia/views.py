@@ -3,6 +3,7 @@ from django.urls import reverse
 from django import forms
 
 from . import util
+import random, markdown2
 
 
 def index(request):
@@ -11,15 +12,16 @@ def index(request):
     })
 
 def entry(request, title):
-    entry_content = util.get_entry(title)
-    if entry_content is None:
+    content = util.get_entry(title)
+    if content is None:
         return render(request, "encyclopedia/error.html", {
-            "error": "Your requested page was not found."
+            "error": "The requested page was not found."
         })
-    else:
-        return render(request, "encyclopedia/entry.html", {
-            "entry": entry_content
-        })
+    html_content = markdown2.markdown(content)
+    return render(request, "encyclopedia/entry.html", {
+        "title": title,
+        "content": html_content
+    })
     
 def search(request):
     query = request.GET.get('q', '')
@@ -56,3 +58,30 @@ def create(request):
         "form": form
     })
 
+class EditPageForm(forms.Form):
+    content = forms.CharField(widget=forms.Textarea(attrs={'style': 'height: 200px;'}), label="")
+
+def edit(request, title):
+    if request.method == "POST":
+        form = EditPageForm(request.POST)
+        if form.is_valid():
+            content = form.cleaned_data["content"]
+            util.save_entry(title, content)
+            return redirect(reverse("entry", args=[title]))
+    else:
+        content = util.get_entry(title)
+        form = EditPageForm(initial={'content': content})
+    return render(request, "encyclopedia/edit.html", {
+        "form": form,
+        "title": title
+    })
+
+def random_page(request):
+    entries = util.list_entries()
+    if entries:
+        random_entry = random.choice(entries)
+        return redirect(reverse('entry', args=[random_entry]))
+    else:
+        return render(request, "encyclopedia/error.html", {
+            "error": "No entries available."
+        })
