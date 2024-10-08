@@ -128,12 +128,11 @@ public class Pruebas
         Scanner sc = new Scanner(System.in);
         String productoleer = sc.nextLine();
         for (Producto p : productos){
-            int i = 0;
             if(p.getEstado() && (productoleer.equalsIgnoreCase(p.getNombre()))){
                 productoelegido.add(p);
             }
-            i++;
         }
+        sc.close();
         System.out.println("Los siguientes productores tienen "+ productoelegido.get(0).getNombre() + " : ");
         for(Productores p : productores){
             if(p.isProducto(productoelegido.get(0)) ){
@@ -145,6 +144,7 @@ public class Pruebas
         Scanner sc6 = new Scanner(System.in);
         String kilogramosleer = sc6.nextLine();
         double cantidad = Integer.parseInt(kilogramosleer);
+        sc6.close();
         clientes.get(0).ComprarProducto(productoelegido.get(0),cantidad);
         System.out.println("Se compra a la cooperativa "+ cantidad + " kg de "+ productoelegido.get(0).getNombre());
         
@@ -156,7 +156,7 @@ public class Pruebas
                 productorelegido.add(p);
             }
         }
-
+        sc1.close();
         System.out.println("Que empresa de transporte se utiliza?");
         for (Logistica l:logisticas){
             System.out.println(l.GetNombre());
@@ -181,7 +181,7 @@ public class Pruebas
         } else {
             System.out.println("*************Error al seleccionar empresa de transporte*************");
         }
-
+        sc2.close();
         clientes.get(0).calcularPrecioTotal();
         System.out.println("Resumen del pedido : " + pedidos.get(0) + (precioenvio.get(0) + clientes.get(0).Preciototal) + " €. \n");
         System.out.println("El productor " + productorelegido.get(0).getNombre() + " se embolsa " + clientes.get(0).Preciototal + " euros de la transacción");
@@ -207,11 +207,9 @@ public class Pruebas
         Scanner sc = new Scanner(System.in);
         String productoleer = sc.nextLine();
         for (Producto p : productos){
-            int i = 0;
             if(p.getEstado() && (productoleer.equalsIgnoreCase(p.getNombre()))){
                 productoelegido.add(p);
             }
-            i++;
         }
         System.out.println("Los siguientes productores tienen "+ productoelegido.get(1).getNombre() + " : ");
         for(Productores p : productores){
@@ -220,13 +218,14 @@ public class Pruebas
                 System.out.println(p.toString() + " " + (productoelegido.get(1).getRendimiento()*p.hectareasobtenidas.get(0)) + " kg. " );
             }
         }
+        sc.close();
         System.out.println("Cuantos kilogramos quiere? (>1000) ");
         Scanner sc6 = new Scanner(System.in);
         String kilogramosleer = sc6.nextLine();
         double cantidad = Integer.parseInt(kilogramosleer);
         clientes.get(1).ComprarProducto(productoelegido.get(1),cantidad);
         System.out.println("Se compra a la cooperativa "+ cantidad + " kg de "+ productoelegido.get(1).getNombre());
-        
+        sc6.close();
         System.out.println("Que productor prefiere? :");
         Scanner sc1 = new Scanner(System.in);
         String productorleer = sc1.nextLine();
@@ -235,7 +234,7 @@ public class Pruebas
                 productorelegido.add(p);
             }
         }
-
+        sc1.close();
         System.out.println("Que empresa de transporte se utiliza?");
         for (Logistica l:logisticas){
             System.out.println(l.GetNombre());
@@ -260,7 +259,7 @@ public class Pruebas
         } else {
             System.out.println("*************Error al seleccionar empresa de transporte*************");
         }
-
+        sc2.close();
         clientes.get(1).calcularPrecioTotal();
         System.out.println("Resumen del pedido : " + pedidos.get(1) + (precioenvio.get(1) + clientes.get(1).Preciototal) + " €. \n");
         System.out.println("El productor " + productorelegido.get(1).getNombre() + " se embolsa " + clientes.get(1).Preciototal + " euros de la transacción");
@@ -285,12 +284,11 @@ public class Pruebas
         Scanner sc = new Scanner(System.in);
         String productoleer = sc.nextLine();
         for (Producto p : productos){
-            int i = 0;
             if(!p.getEstado() && (productoleer.equalsIgnoreCase(p.getNombre()))){
                 productoelegido.add(p);
             }
-            i++;
         }
+        sc.close();
         System.out.println("Los siguientes productores tienen "+ productoelegido.get(2).getNombre() + " : ");
         for(Productores p : productores){
             if(p.isProducto(productoelegido.get(2)) ){
@@ -304,7 +302,7 @@ public class Pruebas
         double cantidad = Integer.parseInt(kilogramosleer);
         clientes.get(2).ComprarProducto(productoelegido.get(2),cantidad);
         System.out.println("Se compra a la cooperativa "+ cantidad + " kg de "+ productoelegido.get(2).getNombre());
-        
+        sc6.close();
         System.out.println("Que productor prefiere? :");
         Scanner sc1 = new Scanner(System.in);
         String productorleer = sc1.nextLine();
@@ -313,6 +311,7 @@ public class Pruebas
                 productorelegido.add(p);
             }
         }
+        sc1.close();
         clientes.get(2).ComprarProducto(productoelegido.get(2),1600.0);
 
         System.out.println("Que empresa de transporte se utiliza?");
@@ -339,7 +338,7 @@ public class Pruebas
         } else {
             System.out.println("*************Error al seleccionar empresa de transporte*************");
         }
-
+        sc2.close();
         clientes.get(2).calcularPrecioTotal();
         System.out.println("Resumen del pedido : " + pedidos.get(2) + (precioenvio.get(2) + clientes.get(2).Preciototal) + " €. \n");
         System.out.println("El productor " + productorelegido.get(2).getNombre() + " se embolsa " + clientes.get(2).Preciototal + " euros de la transacción");
@@ -364,12 +363,11 @@ public class Pruebas
         Scanner sc = new Scanner(System.in);
         String productoleer = sc.nextLine();
         for (Producto p : productos){
-            int i = 0;
             if(!p.getEstado() && (productoleer.equalsIgnoreCase(p.getNombre()))){
                 productoelegido.add(p);
             }
-            i++;
         }
+        sc.close();
         System.out.println("Los siguientes productores tienen "+ productoelegido.get(3).getNombre() + " : ");
         for(Productores p : productores){
             if(p.isProducto(productoelegido.get(3)) ){
@@ -383,7 +381,7 @@ public class Pruebas
         double cantidad = Integer.parseInt(kilogramosleer);
         clientes.get(3).ComprarProducto(productoelegido.get(3),cantidad);
         System.out.println("Se compra a la cooperativa "+ cantidad + " kg de "+ productoelegido.get(3).getNombre());
-        
+        sc6.close();
         System.out.println("Que productor prefiere? :");
         Scanner sc1 = new Scanner(System.in);
         String productorleer = sc1.nextLine();
@@ -392,6 +390,7 @@ public class Pruebas
                 productorelegido.add(p);
             }
         }
+        sc1.close();
         clientes.get(3).ComprarProducto(productoelegido.get(3),1115.0);
 
         System.out.println("Que empresa de transporte se utiliza?");
@@ -418,7 +417,7 @@ public class Pruebas
         } else {
             System.out.println("*************Error al seleccionar empresa de transporte*************");
         }
-
+        sc2.close();
         clientes.get(3).calcularPrecioTotal();
         System.out.println("Resumen del pedido : " + pedidos.get(3) + (precioenvio.get(3) + clientes.get(3).Preciototal) + " €. \n");
         System.out.println("El productor " + productorelegido.get(3).getNombre() + " se embolsa " + clientes.get(3).Preciototal + " euros de la transacción");
@@ -443,11 +442,9 @@ public class Pruebas
         Scanner sc = new Scanner(System.in);
         String productoleer = sc.nextLine();
         for (Producto p : productos){
-            int i = 0;
             if(p.getEstado() && (productoleer.equalsIgnoreCase(p.getNombre()))){
                 productoelegido.add(p);
             }
-            i++;
         }
         System.out.println("Los siguientes productores tienen "+ productoelegido.get(4).getNombre() + " : ");
         for(Productores p : productores){
@@ -456,13 +453,14 @@ public class Pruebas
                 System.out.println(p.toString() + " " + (productoelegido.get(4).getRendimiento()*p.hectareasobtenidas.get(0)) + " kg. " );
             }
         }
+        sc.close();
         System.out.println("Cuantos kilogramos quiere? (<100) ");
         Scanner sc6 = new Scanner(System.in);
         String kilogramosleer = sc6.nextLine();
         double cantidad = Integer.parseInt(kilogramosleer);
         clientes.get(4).ComprarProducto(productoelegido.get(4),cantidad);
         System.out.println("Se compra a la cooperativa "+ cantidad + " kg de "+ productoelegido.get(4).getNombre());
-        
+        sc6.close();
         System.out.println("Que productor prefiere? :");
         Scanner sc1 = new Scanner(System.in);
         String productorleer = sc1.nextLine();
@@ -471,6 +469,7 @@ public class Pruebas
                 productorelegido.add(p);
             }
         }
+        sc1.close();
         clientes.get(4).ComprarProducto(productoelegido.get(4),95.0);
 
         System.out.println("Que empresa de transporte se utiliza?");
@@ -497,7 +496,7 @@ public class Pruebas
         } else {
             System.out.println("*************Error al seleccionar empresa de transporte*************");
         }
-
+        sc2.close();
         clientes.get(4).calcularPrecioTotal();
         System.out.println("Resumen del pedido : " + pedidos.get(4) + (precioenvio.get(4) + clientes.get(4).Preciototal) + " €. \n");
         System.out.println("El productor " + productorelegido.get(4).getNombre() + " se embolsa " + clientes.get(4).Preciototal + " euros de la transacción");
@@ -522,12 +521,11 @@ public class Pruebas
         Scanner sc = new Scanner(System.in);
         String productoleer = sc.nextLine();
         for (Producto p : productos){
-            int i = 0;
             if(!p.getEstado() && (productoleer.equalsIgnoreCase(p.getNombre()))){
                 productoelegido.add(p);
             }
-            i++;
         }
+        sc.close();
         System.out.println("Los siguientes productores tienen "+ productoelegido.get(5).getNombre() + " : ");
         for(Productores p : productores){
             if(p.isProducto(productoelegido.get(5)) ){
@@ -541,7 +539,7 @@ public class Pruebas
         double cantidad = Integer.parseInt(kilogramosleer);
         clientes.get(5).ComprarProducto(productoelegido.get(5),cantidad);
         System.out.println("Se compra a la cooperativa "+ cantidad + " kg de "+ productoelegido.get(5).getNombre());
-        
+        sc6.close();
         System.out.println("Que productor prefiere? :");
         Scanner sc1 = new Scanner(System.in);
         String productorleer = sc1.nextLine();
@@ -550,6 +548,7 @@ public class Pruebas
                 productorelegido.add(p);
             }
         }
+        sc1.close();
         clientes.get(5).ComprarProducto(productoelegido.get(5),43.0);
 
         System.out.println("Que empresa de transporte se utiliza?");
@@ -576,7 +575,7 @@ public class Pruebas
         } else {
             System.out.println("*************Error al seleccionar empresa de transporte*************");
         }
-
+        sc2.close();
         clientes.get(5).calcularPrecioTotal();
         System.out.println("Resumen del pedido : " + pedidos.get(5) + (precioenvio.get(5) + clientes.get(5).Preciototal) + " €. \n");
         System.out.println("El productor " + productorelegido.get(5).getNombre() + " se embolsa " + clientes.get(5).Preciototal + " euros de la transacción");
