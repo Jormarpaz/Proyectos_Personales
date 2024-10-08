@@ -6,7 +6,6 @@
  */
 public class Pedido
 {
-    private Cooperativa cooperativa;
     private Producto producto;
     private Productores productores;
     private Cliente cliente;
@@ -16,7 +15,6 @@ public class Pedido
      * Constructor de Pedido, donde adquiere sus propiedades
      */
     public Pedido(Producto producto, Productores productor, Cliente cliente, Logistica logistica){
-        this.cooperativa = cooperativa;
         this.producto = producto;
         this.productores = productor;
         this.cliente = cliente;
